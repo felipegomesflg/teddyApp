@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MaskedInput from 'react-text-mask'
 import CardGroup from '../components/CardGroup';
-import ModalBase from '../components/ModalBase';
+import ModalConfirm from '../components/ModalConfirm';
+import ModalForm from '../components/ModalForm';
 import { getAll, create, update, remove } from '../services/apiService';
 
 type Data = {

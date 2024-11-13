@@ -32,7 +32,7 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onEdit, onDelete }) => {
 
   const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Volta para a primeira página ao mudar a quantidade por página
+    setCurrentPage(1); 
   };
 
   return (

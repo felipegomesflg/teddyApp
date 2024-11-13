@@ -1,10 +1,7 @@
-/* App.css */
-
-/* Configuração global */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5; /* Background cinza */
+  background-color: #f5f5f5; 
   place-items: normal;
 }
 
@@ -13,13 +10,13 @@ body {
 }
 
 main {
-  margin-top: 30px; /* Espaço para o header fixo */
+  margin-top: 30px; 
   width: 100%;
   padding: 20px;
 }
 
 
-/* Header */
+
 header.navbar {
   width: 100%;
   background-color: white;
@@ -60,7 +57,7 @@ header .right {
   color: black;
 }
 
-/* Sidenav */
+
 .sidenav {
   background-color: #004d40;
 }
@@ -73,7 +70,7 @@ header .right {
   background-color: #00695c;
 }
 
-/* Cabeçalho do CardGroup */
+
 .card-group-header {
   display: flex;
   justify-content: space-between;
@@ -116,12 +113,12 @@ header .right {
   margin: 20px 0;
 }
 
-/* Grid de Clientes */
+
 .client-grid {
   
   flex-wrap: wrap;
   gap: 16px;
-  width: 100%; /* Garante que a grid ocupe toda a largura */
+  width: 100%; 
 }
 
 
@@ -137,7 +134,7 @@ header .right {
   min-height: 140px;
 }
 
-/* Conteúdo da Caixa */
+
 .client-box .card-title {
   font-size: 1rem;
   font-weight: bold;
@@ -149,7 +146,6 @@ header .right {
   color: #666;
 }
 
-/* Ações dentro da caixa */
 .card-action {
   display: flex;
   justify-content: flex-end;
@@ -167,6 +163,29 @@ header .right {
   color: black;
 }
 
+/* Modais */
+.modal {
+  max-width: 500px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-client-btn {
+  width: 100%;
+  margin-top: 20px;
+  background: transparent;
+  border: 2px solid #ec6724;
+  color: #ec6724;
+}
+
+.create-client-btn:hover {
+  background: #ec6724;
+  color: white;
+}
+
 /* Responsividade */
 @media only screen and (max-width: 600px) {
   .client-box {
@@ -177,3 +196,5 @@ header .right {
     font-size: 0.8rem;
   }
 }
+
+

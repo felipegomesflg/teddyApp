@@ -3,7 +3,7 @@ import React from 'react';
 type Data = {
   id: number;
   name: string;
-  salary: number;
+  salary: string;
   company: string;
 };
 
@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ data, onEdit, onDelete }) => {
     <div className="card client-box">
       <div className="card-content">
         <span className="card-title">{data.name}</span>
-        <p>Salário: R$ {data.salary.toFixed(2)}</p>
+        <p>Salário: R$ {parseFloat(data.salary).toFixed(2)}</p>
         <p>Empresa: {data.company}</p>
       </div>
       <div className="card-action">

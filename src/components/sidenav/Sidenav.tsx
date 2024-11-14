@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidenav.css';
+import logo from '../../assets/logo.png';
 
 const clientsIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" className="icon">
@@ -43,14 +44,25 @@ const Sidenav: React.FC = () => {
         { name: 'Produtos', path: '/products', icon: productIcon },
     ];
 
+    const handleNavigation = (path: string) => {
+        navigate(path);
+        const sidenavInstance = M.Sidenav.getInstance(document.querySelector('.sidenav')!);
+        sidenavInstance.close(); 
+      };
+
     return (
         <aside id="menu" className="sidenav">
+            
+            <div className="logo-content">
+              <img src={logo} alt="Logo" className="logo" />
+
+            </div>
             <div className="sidenav-content">
                 {menuItems.map((item) => (
                     <button
                         key={item.name}
                         className={`sidenav-item ${location.pathname === item.path ? 'active' : ''}`}
-                        onClick={() => location.pathname !== item.path && navigate(item.path)}
+                        onClick={() => handleNavigation(item.path)}
                         disabled={location.pathname === item.path}
                     >
                         <item.icon className="sidenav-icon" />

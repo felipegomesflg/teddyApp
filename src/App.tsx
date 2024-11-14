@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Clients from './pages/Clients';
-import Products from './pages/Products';
+import Products from './pages/Produtos';
 import SelectedClients from './pages/SelectedClients';
 
 import Header from './components/Header/Header';
-import Sidenav from './components/sidenav/sidenav';
+import Sidenav from './components/sidenav/Sidenav';
 import './App.css';
 
 const App: React.FC = () => {

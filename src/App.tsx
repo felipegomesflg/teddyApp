@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Home from './pages/Home';
 import Clients from './pages/Clients';
 import Products from './pages/Products';
-import Header from './components/Header';
-import Menu from './components/Menu';
+import SelectedClients from './pages/SelectedClients';
+
+import Header from './components/Header/Header';
+import Sidenav from './components/sidenav/sidenav';
 import './App.css';
 
 const App: React.FC = () => {
@@ -22,12 +24,13 @@ const AppContent: React.FC = () => {
   return (
     <>
       {showHeaderAndMenu && <Header />}
-      {showHeaderAndMenu && <Menu />}
+      {showHeaderAndMenu && <Sidenav />}
       <main className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/selected-clients" element={<SelectedClients />} />
         </Routes>
       </main>
     </>

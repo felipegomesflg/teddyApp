@@ -1,79 +1,25 @@
 body {
   margin: 0;
   font-family: Inter, sans-serif;
-  background-color: #f5f5f5; 
+  background-color: #f5f5f5;
   place-items: normal;
 }
 
-#root{
+#root {
   width: 100%;
 }
 
 main {
-  margin-top: 30px; 
+  margin-top: 30px;
   width: 100%;
   padding: 20px;
 }
 
 
-
-
-/* HEADER*/
-
-
-
-header.navbar {
-  width: 100%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  height: 64px;
-  z-index: 10;
+button:focus, button:active{
+  outline:none !important;
 }
 
-header .sidenav-trigger {
-  margin-right: 10px;
-}
-
-header .brand-logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-}
-
-header .breadcrumb {
-  flex: 1;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
-  color: gray;
-}
-
-header .right {
-  font-size: 1rem;
-  font-weight: 500;
-  color: black;
-}
-
-
-.sidenav {
-  background-color: #004d40;
-}
-
-.sidenav a {
-  color: white;
-}
-
-.sidenav a.active {
-  background-color: #00695c;
-}
 
 
 
@@ -83,26 +29,35 @@ header .right {
 /* CARDs*/
 
 
-.card .card-content, .card .card-action{
-  border:0 !important;
+.card .card-content,
+.card .card-action {
+  border: 0 !important;
   padding: 0 !important;
   text-align: center;
+}
+.card .card-content p{
+  font-size:14px;
+}
+.card .card-content p b{
+  font-size: 16px;
 }
 
 .card-group-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 0px 10px;
+  font-size: 18px !important;
 }
-.card-group-header select{
+
+.card-group-header select {
   display: inline-block !important;
+  font-size: 12px !important;
 }
 
 .card-group-header span {
-  font-size: 1rem;
   color: #333;
-  font-weight: bold;
 }
 
 .items-per-page {
@@ -112,18 +67,45 @@ header .right {
 }
 
 .items-per-page label {
-  font-size: 0.9rem;
+  font-size: 18px;
   color: #555;
+  white-space: nowrap;
 }
 
 .items-per-page select {
   padding: 5px;
   font-size: 0.9rem;
-  border: 1px solid #ccc;
+  border: 1px solid #D9D9D9;
   border-radius: 4px;
+  background: transparent;
+  height: auto;
+}
+
+.card-controls {
+  padding: 0 10px;
 }
 
 /* Paginação */
+.pagination {
+  margin: 10px auto;
+  text-align: center;
+}
+
+.pagination button{
+  border: 2px solid transparent;
+  background-color: transparent !important;
+  margin:0 3px;
+  padding:8px 13px
+}
+.pagination button.active{
+ background-color: #ec6724 !important; 
+ color:#FFF;
+}
+
+.pagination button:hover,.pagination button:focus,.pagination button:active{
+  border-color:#ec6724;
+  
+}
 .pagination-controls {
   display: flex;
   justify-content: space-between;
@@ -133,10 +115,11 @@ header .right {
 
 
 .client-grid {
-  
+
   flex-wrap: wrap;
   gap: 16px;
-  width: 100%; 
+  width: 100%;
+  margin: 0px;
 }
 
 
@@ -149,7 +132,7 @@ header .right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
 }
 
 
@@ -169,7 +152,7 @@ header .right {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 5px;  
+  margin-top: 10px;
 
 }
 
@@ -196,40 +179,42 @@ header .right {
 
 .create-client-btn {
   width: 100%;
-  margin-top: 20px;
-  background: transparent;
+
+  background: transparent !important;
   border: 2px solid #ec6724;
   color: #ec6724;
 }
 
 .create-client-btn:hover {
-  background: #ec6724;
+  background: #ec6724 !important;
   color: white;
+  border-color: transparent;
 }
 
 /* COMUM A TODOS */
 
 
-input{
- BORDER:2px solid #D9D9D9 !important;
- background-color:#FFF; 
- box-sizing: border-box !important;
- border-radius: 3px !important;
- padding:10px !important;
+input {
+  border: 2px solid #D9D9D9 !important;
+  background-color: #FFF;
+  box-sizing: border-box !important;
+  border-radius: 3px !important;
+  padding: 10px !important;
 }
-button{
+
+main button {
   background-color: #EC6724 !important;
   font-weight: bold;
 }
+
 /* Responsividade */
 @media only screen and (max-width: 600px) {
   .client-box {
-    width: calc(100% - 16px); /* Em telas menores, caixas ocupam 100% da largura */
+    width: calc(100% - 16px);
+    /* Em telas menores, caixas ocupam 100% da largura */
   }
 
   .breadcrumb {
     font-size: 0.8rem;
   }
 }
-
-

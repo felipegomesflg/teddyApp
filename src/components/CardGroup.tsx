@@ -10,11 +10,12 @@ type Data = {
 
 type CardGroupProps = {
   data: Data[];
+  onAdd: (data: Data) => void;
   onEdit: (data: Data) => void;
   onDelete: (id: number) => void;
 };
 
-const CardGroup: React.FC<CardGroupProps> = ({ data, onEdit, onDelete }) => {
+const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
 
@@ -28,15 +29,15 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onEdit, onDelete }) => {
 
   const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(Number(e.target.value));
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
   return (
     <div>
-            
+
       <div className="card-group-header">
-        <span>{data.length} clientes encontrados</span>
+        <span><b>{data.length}</b> clientes encontrados</span>
         <div className="items-per-page">
-          <label htmlFor="itemsPerPage">Registros por página:</label>
+          <label htmlFor="itemsPerPage">Clientes por página:</label>
           <select id="itemsPerPage" value={itemsPerPage} onChange={handleItemsPerPageChange}>
             <option value={4}>4</option>
             <option value={8}>8</option>
@@ -49,21 +50,30 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onEdit, onDelete }) => {
       <div className="row client-grid">
         {currentItems.map((item) => (
           <div key={item.id} className="col s12 m6 l3">
-            <Card data={item} onEdit={() => onEdit(item)} onDelete={() => onDelete(item.id)} />
+            <Card data={item} onAdd={() => onAdd(item)} onEdit={() => onEdit(item)} onDelete={() => onDelete(item.id)} />
           </div>
         ))}
-      </div>
+      </div> 
+      <div className="card-controls">
+        <button
 
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
-          <button
-            key={pageNumber}
-            className={`pagination-button ${pageNumber === currentPage ? 'active' : ''}`}
-            onClick={() => handlePageClick(pageNumber)}
-          >
-            {pageNumber}
-          </button>
-        ))}
+          onClick={onAdd}
+          className="create-client-btn"
+        >
+          Criar Cliente
+        </button>
+
+        <div className="pagination">
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+            <button
+              key={pageNumber}
+              className={`pagination-button ${pageNumber === currentPage ? 'active' : ''}`}
+              onClick={() => handlePageClick(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import addIcon from '../assets/icons/add.svg';
+import editIcon from '../assets/icons/edit.svg';
+import deleteIcon from '../assets/icons/delete.svg';
+
 type Data = {
   id: number;
   name: string;
@@ -9,11 +13,12 @@ type Data = {
 
 type CardProps = {
   data: Data;
+  onAdd: () => void;
   onEdit: () => void;
   onDelete: () => void;
 };
 
-const Card: React.FC<CardProps> = ({ data, onEdit, onDelete }) => {
+const Card: React.FC<CardProps> = ({ data, onAdd, onEdit, onDelete }) => {
   return (
     <div className="card client-box">
       <div className="card-content">
@@ -22,14 +27,14 @@ const Card: React.FC<CardProps> = ({ data, onEdit, onDelete }) => {
         <p>Empresa: {data.company}</p>
       </div>
       <div className="card-action">
-        <i className="material-icons" >
-          add
+        <i className="material-icons red-text darken-4" onClick={onAdd}>
+          <img src={addIcon} alt="Edit" />
         </i>
-        <i className="material-icons" onClick={onEdit}>
-          edit
+        <i className="material-icons red-text darken-4" onClick={onEdit}>
+          <img src={editIcon} alt="Edit" />
         </i>
         <i className="material-icons red-text darken-4" onClick={onDelete}>
-          delete
+          <img src={deleteIcon} alt="Edit" />
         </i>
       </div>
     </div>

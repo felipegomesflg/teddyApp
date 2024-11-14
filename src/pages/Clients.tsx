@@ -88,15 +88,11 @@ const Clients: React.FC = () => {
     <main>
       <CardGroup
         data={dataList}
+        onAdd={() => setModalForm({ open: true, action: 'add', data: null })}
         onEdit={(data) => setModalForm({ open: true, action: 'edit', data })}
         onDelete={(data) => setModalConfirm({ open: true, data })}
       />
-      <button
-        onClick={() => setModalForm({ open: true, action: 'add', data: null })}
-        className="create-client-btn"
-      >
-        Criar Cliente
-      </button>
+     
 
       {/* Modal de Adicionar/Editar Cliente */}
       {modalForm.open && (

@@ -5,7 +5,7 @@ const Home: React.FC = () => {
   const [name, setName] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleEnter = () => {
+  const handleSubmit = (e: React.FormEvent) => {
     localStorage.setItem('userName', name);
     navigate('/clients');
   };
@@ -13,16 +13,18 @@ const Home: React.FC = () => {
   return (
     <div style={styles.container} className='home'>
       <h2 style={styles.h2}>Olá, seja bem-vindo!</h2>
-      <input
-        type="text"
-        placeholder="Digite seu nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        style={styles.input}
-      />
-      <button onClick={handleEnter} className="btn"  style={styles.button}>
-        Entrar
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Digite seu nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={styles.input}
+        />
+        <button type="submit" className="btn" style={styles.button}>
+          Entrar
+        </button>
+      </form>
     </div>
   );
 };
@@ -42,16 +44,17 @@ const styles = {
     fontSize: '18px',
     width: '500px',
     height: 'auto',
-    marginBottom:'10px'
+    display:'block',
+    marginBottom: '10px'
   },
-  button:{
+  button: {
     padding: '4px',
     width: '500px',
     height: 'auto',
   },
-  h2:{
-    marginTop:'0px',
-    fontSize:'36px'
+  h2: {
+    marginTop: '0px',
+    fontSize: '36px'
   }
 };
 

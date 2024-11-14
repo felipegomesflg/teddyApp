@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Inter, sans-serif;
   background-color: #f5f5f5; 
   place-items: normal;
 }
@@ -14,6 +14,11 @@ main {
   width: 100%;
   padding: 20px;
 }
+
+
+
+
+/* HEADER*/
 
 
 
@@ -70,6 +75,19 @@ header .right {
   background-color: #00695c;
 }
 
+
+
+
+
+
+/* CARDs*/
+
+
+.card .card-content, .card .card-action{
+  border:0 !important;
+  padding: 0 !important;
+  text-align: center;
+}
 
 .card-group-header {
   display: flex;
@@ -131,7 +149,7 @@ header .right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 140px;
+  
 }
 
 
@@ -144,12 +162,15 @@ header .right {
 .client-box p {
   font-size: 0.9rem;
   color: #666;
+  line-height: 25px;
 }
 
 .card-action {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px;
+  margin-top: 5px;  
+
 }
 
 .card-action i {
@@ -186,6 +207,20 @@ header .right {
   color: white;
 }
 
+/* COMUM A TODOS */
+
+
+input{
+ BORDER:2px solid #D9D9D9 !important;
+ background-color:#FFF; 
+ box-sizing: border-box !important;
+ border-radius: 3px !important;
+ padding:10px !important;
+}
+button{
+  background-color: #EC6724 !important;
+  font-weight: bold;
+}
 /* Responsividade */
 @media only screen and (max-width: 600px) {
   .client-box {

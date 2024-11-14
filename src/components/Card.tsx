@@ -17,15 +17,18 @@ const Card: React.FC<CardProps> = ({ data, onEdit, onDelete }) => {
   return (
     <div className="card client-box">
       <div className="card-content">
-        <span className="card-title">{data.name}</span>
+        <p><b>{data.name}</b></p>
         <p>Salário: R$ {parseFloat(data.salary).toFixed(2)}</p>
         <p>Empresa: {data.company}</p>
       </div>
       <div className="card-action">
+        <i className="material-icons" >
+          add
+        </i>
         <i className="material-icons" onClick={onEdit}>
           edit
         </i>
-        <i className="material-icons" onClick={onDelete}>
+        <i className="material-icons red-text darken-4" onClick={onDelete}>
           delete
         </i>
       </div>

@@ -86,7 +86,6 @@ const Clients: React.FC = () => {
 
   return (
     <main>
-      <h1>Clientes</h1>
       <CardGroup
         data={dataList}
         onEdit={(data) => setModalForm({ open: true, action: 'edit', data })}

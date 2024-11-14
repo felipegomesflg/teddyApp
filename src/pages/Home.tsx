@@ -11,8 +11,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1>Bem-vindo</h1>
+    <div style={styles.container} className='home'>
+      <h2 style={styles.h2}>Olá, seja bem-vindo!</h2>
       <input
         type="text"
         placeholder="Digite seu nome"
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
         onChange={(e) => setName(e.target.value)}
         style={styles.input}
       />
-      <button onClick={handleEnter} className="btn">
+      <button onClick={handleEnter} className="btn"  style={styles.button}>
         Entrar
       </button>
     </div>
@@ -33,16 +33,26 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: 'calc(100vh - 40px)',
     textAlign: 'center',
     backgroundColor: '#f5f5f5',
   },
   input: {
-    marginBottom: '20px',
     padding: '10px',
-    fontSize: '1rem',
-    width: '300px',
+    fontSize: '18px',
+    width: '500px',
+    height: 'auto',
+    marginBottom:'10px'
   },
+  button:{
+    padding: '4px',
+    width: '500px',
+    height: 'auto',
+  },
+  h2:{
+    marginTop:'0px',
+    fontSize:'36px'
+  }
 };
 
 export default Home;

@@ -22,19 +22,14 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onEdit, onDelete }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
 
-  const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  const handlePageClick = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
   const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(Number(e.target.value));
     setCurrentPage(1); 
   };
-
   return (
     <div>
             
@@ -59,16 +54,16 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onEdit, onDelete }) => {
         ))}
       </div>
 
-      <div className="pagination-controls">
-        <button onClick={handlePrev} disabled={currentPage === 1} className="btn">
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <button onClick={handleNext} disabled={currentPage === totalPages} className="btn">
-          Próxima
-        </button>
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+          <button
+            key={pageNumber}
+            className={`pagination-button ${pageNumber === currentPage ? 'active' : ''}`}
+            onClick={() => handlePageClick(pageNumber)}
+          >
+            {pageNumber}
+          </button>
+        ))}
       </div>
     </div>
   );

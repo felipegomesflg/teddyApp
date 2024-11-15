@@ -6,14 +6,14 @@ import { getAll, create, update, remove } from '../services/apiService';
 type Data = {
   id: number | null;
   name: string;
-  salary: number; 
+  salary: number;
   company: string;
 };
 
 const Clients: React.FC = () => {
   const [dataList, setDataList] = useState<Data[]>([]);
   const [selectedClients, setSelectedClients] = useState<Data[]>([]);
-  
+
   const [modalForm, setModalForm] = useState<{ open: boolean; action: 'add' | 'edit'; data: Data | null }>({
     open: false,
     action: 'add',
@@ -24,10 +24,6 @@ const Clients: React.FC = () => {
     open: false,
     data: null,
   });
-
-  useEffect(() => {
-    console.log('Estado modalConfirm atualizado:', modalConfirm);
-  }, [modalConfirm]);
 
   useEffect(() => {
     const fetchClients = async () => {
@@ -54,7 +50,9 @@ const Clients: React.FC = () => {
 
   const handleEdit = async (updatedData: Data) => {
     try {
-      console.log(updatedData);
+      if (updatedData.id === null) {
+        throw new Error('ID inválido. Não é possível editar um cliente sem um ID válido.');
+      }
       const editedClient = await update<Data>('/clients', updatedData.id, updatedData);
       setDataList(dataList.map((item) => (item.id === updatedData.id ? editedClient : item)));
     } catch (error) {
@@ -78,12 +76,12 @@ const Clients: React.FC = () => {
 
 
   const formatCurrency = (value: string): string => {
-    value = value.replace(/\D/g, ''); 
-    if (!value) return '0,00'; 
+    value = value.replace(/\D/g, '');
+    if (!value) return '0,00';
 
     const options = { minimumFractionDigits: 2 };
     const result = new Intl.NumberFormat('pt-BR', options).format(
-      parseFloat(value) / 100 
+      parseFloat(value) / 100
     );
 
     return result;
@@ -103,8 +101,8 @@ const Clients: React.FC = () => {
         onDelete={(data) => setModalConfirm({ open: true, data })}
         onSelectionChange={handleSelectionChange}
       />
-     
-    
+
+
       {/* Modal de Adicionar/Editar Cliente */}
       {modalForm.open && (
         <ModalBase
@@ -147,7 +145,7 @@ const Clients: React.FC = () => {
                 input.value = formattedValue;
               }}
               onBlur={(e) => {
-              
+
                 const input = e.target as HTMLInputElement;
                 input.value = formatCurrency(input.value);
               }}

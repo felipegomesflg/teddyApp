@@ -11,12 +11,12 @@ type Data = {
 type CardGroupProps = {
   data: Data[];
   onEdit: (data: Data) => void;
-  onDelete: (id: number) => void;
+  onDelete: (data: Data) => void;
   onAdd: (data: Data) => void;
   onSelectionChange?: (selected: Data[]) => void;
 };
 
-const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete, onSelectionChange }) => {
+const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete, onSelectionChange }) => {  
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
@@ -80,7 +80,7 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete, on
             <Card
               data={item}
               onEdit={onEdit ? () => onEdit(item) : undefined}
-              onDelete={onDelete ? () => onDelete(item.id) : undefined}
+              onDelete={onDelete ? () => onDelete(item) : undefined}
               onSelect={onSelectionChange ? toggleSelection : undefined}
               isSelected={selectedIds.includes(item.id)}
             />

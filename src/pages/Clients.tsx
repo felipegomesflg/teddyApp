@@ -26,6 +26,10 @@ const Clients: React.FC = () => {
   });
 
   useEffect(() => {
+    console.log('Estado modalConfirm atualizado:', modalConfirm);
+  }, [modalConfirm]);
+
+  useEffect(() => {
     const fetchClients = async () => {
       try {
         const clients = await getAll<Data>('/clients');

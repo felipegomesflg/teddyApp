@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             key={item.name}
             className={`menu-item ${location.pathname === item.path ? 'active' : ''}`}
             onClick={() => location.pathname !== item.path && navigate(item.path)}
-            disabled={location.pathname === item.path} // Desativa a opção ativa
+            disabled={location.pathname === item.path} 
           >
             {item.name}
           </button>

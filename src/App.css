@@ -24,8 +24,6 @@ button:focus, button:active{
 
 
 
-
-
 /* CARDs*/
 
 
@@ -40,6 +38,9 @@ button:focus, button:active{
 }
 .card .card-content p b{
   font-size: 16px;
+}
+.card .card-action img{
+  height: 20px;
 }
 
 .card-group-header {
@@ -127,7 +128,7 @@ button:focus, button:active{
   background-color: white;
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 15px 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -167,17 +168,9 @@ button:focus, button:active{
   color: black;
 }
 
-/* Modais */
-.modal {
-  max-width: 500px;
-}
 
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-}
 
-.create-client-btn {
+.client-btn-action {
   width: 100%;
 
   background: transparent !important;
@@ -185,7 +178,7 @@ button:focus, button:active{
   color: #ec6724;
 }
 
-.create-client-btn:hover {
+.client-btn-action:hover {
   background: #ec6724 !important;
   color: white;
   border-color: transparent;
@@ -200,12 +193,19 @@ input {
   box-sizing: border-box !important;
   border-radius: 3px !important;
   padding: 10px !important;
+  height: 40px !important;
 }
 
 main button {
   background-color: #EC6724 !important;
   font-weight: bold;
 }
+
+
+.end{
+  justify-content: flex-end;
+}
+
 
 /* Responsividade */
 @media only screen and (max-width: 600px) {

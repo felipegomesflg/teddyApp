@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
 
 type Data = {
@@ -10,18 +10,22 @@ type Data = {
 
 type CardGroupProps = {
   data: Data[];
-  onAdd: (data: Data) => void;
   onEdit: (data: Data) => void;
   onDelete: (id: number) => void;
+  onAdd: (data: Data) => void;
+  onSelectionChange?: (selected: Data[]) => void;
 };
 
-const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete }) => {
+const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete, onSelectionChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
+  //LOGICA DE PAGINAÇÃO
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
+
 
   const handlePageClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -31,6 +35,29 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete }) 
     setItemsPerPage(Number(e.target.value));
     setCurrentPage(1);
   };
+
+  //LOGICA DE MULTIPLOS CLIENTES SELECIONADOS
+  useEffect(() => {
+
+    const savedSelected = JSON.parse(localStorage.getItem('selectedClients') || '[]');
+    setSelectedIds(savedSelected.map((client: Data) => client.id));
+  }, []);
+
+  const toggleSelection = (id: number) => {
+    let updatedSelectedIds;
+    if (selectedIds.includes(id)) {
+      updatedSelectedIds = selectedIds.filter((selectedId) => selectedId !== id);
+    } else {
+      updatedSelectedIds = [...selectedIds, id];
+    }
+
+    setSelectedIds(updatedSelectedIds);
+
+
+    const selectedClients = data.filter((item) => updatedSelectedIds.includes(item.id));
+    localStorage.setItem('selectedClients', JSON.stringify(selectedClients));
+  };
+
   return (
     <div>
 
@@ -50,15 +77,21 @@ const CardGroup: React.FC<CardGroupProps> = ({ data, onAdd, onEdit, onDelete }) 
       <div className="row client-grid">
         {currentItems.map((item) => (
           <div key={item.id} className="col s12 m6 l3">
-            <Card data={item} onAdd={() => onAdd(item)} onEdit={() => onEdit(item)} onDelete={() => onDelete(item.id)} />
+            <Card
+              data={item}
+              onEdit={onEdit ? () => onEdit(item) : undefined}
+              onDelete={onDelete ? () => onDelete(item.id) : undefined}
+              onSelect={onSelectionChange ? toggleSelection : undefined}
+              isSelected={selectedIds.includes(item.id)}
+            />
           </div>
         ))}
-      </div> 
+      </div>
       <div className="card-controls">
         <button
 
           onClick={onAdd}
-          className="create-client-btn"
+          className="client-btn-action"
         >
           Criar Cliente
         </button>

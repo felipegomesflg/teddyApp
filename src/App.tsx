@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
 const AppContent: React.FC = () => {
   const location = useLocation();
-  const showHeaderAndMenu = location.pathname !== '/'; // Não exibir Header e Menu na página inicial
+  const showHeaderAndMenu = location.pathname !== '/'; 
 
   return (
     <>

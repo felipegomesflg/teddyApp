@@ -209,12 +209,27 @@ main button {
 
 /* Responsividade */
 @media only screen and (max-width: 600px) {
-  .client-box {
-    width: calc(100% - 16px);
-    /* Em telas menores, caixas ocupam 100% da largura */
+  
+  main{
+    padding:20px 0 0;
   }
 
-  .breadcrumb {
-    font-size: 0.8rem;
+  .card-group-header{
+    display: block;
+    
   }
+  .card-group-header,.card-group-header label{
+    font-size:14px !important;
+  }
+
+ .modal{
+  width: 80%;
+ }
+ .home  form{
+  width:80% !important;
+ }
+ .home input, .home button{
+  width:100% !important;
+
+ }
 }

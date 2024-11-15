@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import CardGroup from '../components/CardGroup';
-import ModalBase from '../components/ModalBase';
+import ModalBase from '../components/modal/ModalBase';
 import { getAll, create, update, remove } from '../services/apiService';
 
 type Data = {
   id: number | null;
   name: string;
-  salary: number;
+  salary: number; 
   company: string;
 };
 
 const Clients: React.FC = () => {
   const [dataList, setDataList] = useState<Data[]>([]);
+  const [selectedClients, setSelectedClients] = useState<Data[]>([]);
+  
   const [modalForm, setModalForm] = useState<{ open: boolean; action: 'add' | 'edit'; data: Data | null }>({
     open: false,
     action: 'add',
@@ -22,6 +24,10 @@ const Clients: React.FC = () => {
     open: false,
     data: null,
   });
+
+  useEffect(() => {
+    console.log('Estado modalConfirm atualizado:', modalConfirm);
+  }, [modalConfirm]);
 
   useEffect(() => {
     const fetchClients = async () => {
@@ -66,6 +72,10 @@ const Clients: React.FC = () => {
     }
   };
 
+  const handleSelectionChange = (selected: Data[]) => {
+    setSelectedClients(selected);
+  };
+
 
   const formatCurrency = (value: string): string => {
     value = value.replace(/\D/g, ''); 
@@ -86,19 +96,15 @@ const Clients: React.FC = () => {
 
   return (
     <main>
-      <h1>Clientes</h1>
       <CardGroup
         data={dataList}
+        onAdd={() => setModalForm({ open: true, action: 'add', data: null })}
         onEdit={(data) => setModalForm({ open: true, action: 'edit', data })}
         onDelete={(data) => setModalConfirm({ open: true, data })}
+        onSelectionChange={handleSelectionChange}
       />
-      <button
-        onClick={() => setModalForm({ open: true, action: 'add', data: null })}
-        className="create-client-btn"
-      >
-        Criar Cliente
-      </button>
-
+     
+    
       {/* Modal de Adicionar/Editar Cliente */}
       {modalForm.open && (
         <ModalBase
@@ -121,9 +127,6 @@ const Clients: React.FC = () => {
                 }}
               >
                 Confirmar
-              </button>
-              <button className="btn red" onClick={() => setModalForm({ open: false, action: 'add', data: null })}>
-                Cancelar
               </button>
             </>
           }
@@ -167,19 +170,16 @@ const Clients: React.FC = () => {
               <button
                 className="btn red"
                 onClick={() => {
-                  handleDelete(modalConfirm.data);
+                  handleDelete(modalConfirm.data.id);
                   setModalConfirm({ open: false, data: null });
                 }}
               >
                 Excluir
               </button>
-              <button className="btn grey" onClick={() => setModalConfirm({ open: false, data: null })}>
-                Cancelar
-              </button>
             </>
           }
         >
-          <p>Tem certeza que deseja excluir o cliente <strong>{modalConfirm.data.name}</strong>?</p>
+          <p>Você está prestes a excluir o cliente: <strong>{modalConfirm.data.name}</strong>?</p>
         </ModalBase>
       )}
     </main>

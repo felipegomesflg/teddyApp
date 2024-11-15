@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Menu: React.FC = () => {
   useEffect(() => {
     const sidenav = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(sidenav); // Inicializa o sidenav do Materialize
+    M.Sidenav.init(sidenav); 
   }, []);
 
   return (

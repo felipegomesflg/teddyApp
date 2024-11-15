@@ -46,7 +46,7 @@ const SelectedClients: React.FC = () => {
 
           <div style={{ padding: '10px' }} >
             <button className="client-btn-action" onClick={handleMassDelete}>
-              Remover Todos
+              Limpar clientes selecionados
             </button>
           </div>
         )}

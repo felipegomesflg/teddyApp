@@ -45,12 +45,12 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 1. Clone o repositório:
 
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/felipegomesflg/teddyApp
    ```
 2. Navegue até a pasta do projeto:
 
 ```bash
-cd nome-do-projeto
+cd teddyapp
 ```
 3. Instale as dependências:
 
@@ -83,14 +83,10 @@ yarn start
 A aplicação estará disponível em http://localhost:3000.
 
 ### Rodar Testes
-Para executar os testes unitários:
+Para executar os testes e2e usando Cypress:
 
 ```bash
-# Usando npm
-npm test
-
-# Ou usando yarn
-yarn test
+npx cypress run
 ```
 
 ## 🔍 Funcionalidades e Como Testá-las
